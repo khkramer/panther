@@ -55,7 +55,7 @@ final class ChromeManager implements BrowserManagerInterface
             $chromeOptions->addArguments($this->arguments);
         }
 
-        if (array_key_exists('chrom_binary', $this->options)) {
+        if (array_key_exists('chrome_binary', $this->options)) {
             $chromeOptions->setBinary($this->options['chrome_binary']);
         }
 
