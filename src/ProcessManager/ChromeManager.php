@@ -50,11 +50,16 @@ final class ChromeManager implements BrowserManagerInterface
         }
 
         $capabilities = DesiredCapabilities::chrome();
+        $chromeOptions = new ChromeOptions();
         if ($this->arguments) {
-            $chromeOptions = new ChromeOptions();
             $chromeOptions->addArguments($this->arguments);
-            $capabilities->setCapability(ChromeOptions::CAPABILITY, $chromeOptions);
         }
+
+        if (array_key_exists('chrom_binary', $this->options)) {
+            $chromeOptions->setBinary($this->options['chrome_binary']);
+        }
+
+        $capabilities->setCapability(ChromeOptions::CAPABILITY, $chromeOptions);
 
         return RemoteWebDriver::create($url, $capabilities);
     }
